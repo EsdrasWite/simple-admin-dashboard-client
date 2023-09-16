@@ -1,0 +1,18 @@
+.footer {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    .appTitle {
+        font-size: 12px;
+        font-style: italic;
+        color: #999;
+    }
+
+    .copyright {
+        font-size: 12px;
+        font-style: italic;
+        color: #999;
+    }
+}

@@ -1,0 +1,228 @@
+@import '../components/styles/responsive.scss';
+
+$primary-color: blueviolet;
+$secondary_color: rgb(135, 102, 167);
+$text_color: #888;
+
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $secondary_color;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(97deg, rgba(255, 255, 255, 1) 0%, rgba(143, 137, 214, 1) 54%, rgba(156, 87, 216, 1) 100%);
+
+    .nav_bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        background-color: azure;
+        border-bottom: 3px solid $primary-color;
+
+
+        .logo {
+
+            display: flex;
+            align-items: center;
+
+            span {
+                font-size: 22px;
+                letter-spacing: -1px;
+                color: blueviolet;
+                font-weight: bold;
+                padding-left: 20px;
+
+                @include sm {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .menu {
+            display: flex;
+            gap: 10px;
+            padding-right: 20px;
+            cursor: pointer;
+
+            span {
+                color: rgb(153, 86, 215);
+                display: flex;
+                align-items: center;
+
+                @include sm {
+                    &:first-child{
+                        display: none;
+                    }
+                    font-size: 15px;
+                }
+
+            }
+        }
+    }
+
+    .alertMessage {
+        background-color: rgb(184, 139, 123);
+        color: aliceblue;
+        position: absolute;
+        top: 50px;
+    }
+
+    .loginContainer {
+        display: flex;
+        background-color: white;
+        margin-top: 100px;
+        border-radius: 10px;
+        width: 50%;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: rgba(0, 0, 0, 0.3) 5px 6px 12px;
+
+        @include xsm {
+            width: 100%;
+            min-width: 400px;
+        }
+
+        @include sm {
+            width: 70%;
+        }
+
+        @include md {
+            width: 70%;
+        }
+
+        .left {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $secondary_color;
+
+            .content {
+                width: 130px;
+                height: 130px;
+                background-image: url('../components/assets/server_img.png');
+                background-size: contain;
+                object-fit: cover;
+            }
+        }
+
+        .right {
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            padding: 15px;
+
+            .title {
+                font-size: 18px;
+                color: $secondary_color;
+                font-weight: bold;
+
+            }
+
+            .login_form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+
+                .button {
+                    padding: 8px 50px;
+                    background-color: $primary-color;
+                    border-radius: 8px;
+                    cursor: pointer;
+
+                    span {
+                        font-size: 14px;
+                        color: white;
+                        font-weight: 600;
+                    }
+
+                    &:hover {
+                        padding: 7px 50px;
+                        background-color: white;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        border: 1px solid $primary-color;
+
+                        span {
+                            font-size: 14px;
+                            color: $primary-color;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+
+            span {
+                font-size: 14px;
+                color: $text_color;
+            }
+        }
+
+    }
+
+    // .body {
+    //     display: flex;
+    //     gap: 20px;
+    //     padding: 60px 60px;
+
+    //     .left {
+    //         flex: 3;
+    //         display: flex;
+    //         background-image: url('../components/assets/pot_de_fleur_con.png');
+    //         background-repeat: no-repeat;
+    //         background-size: contain;
+    //         background-position: center;
+    //         opacity: 0.7;
+
+    //         @include md {
+    //             background-size: cover;
+    //         }
+
+    //         @include sm {
+    //             display: none;
+    //         }
+
+
+    //         title {
+    //             color: white;
+    //             font-weight: bold;
+    //             font-size: 40px;
+    //             // z-index: 100;
+
+    //         }
+    //     }
+
+    //     .rigth {
+    //         flex: 2;
+    //         flex-direction: column;
+    //         gap: 15px;
+    //         box-shadow: rgba(0, 0, 0, 0.36) 0px 3px 5px;
+    //         padding: 20px 60px;
+    //         justify-content: center;
+    //         align-items: center;
+
+    //         @include md {
+    //             padding: 20px 10px;
+    //             flex: 3;
+    //         }
+
+    //         .title {
+    //             font-size: 18px;
+    //             text-align: center;
+    //             padding: 20px;
+    //             color: #999;
+    //         }
+    //     }
+    // }
+
+
+}

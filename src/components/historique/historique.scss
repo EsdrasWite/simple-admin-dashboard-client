@@ -1,0 +1,53 @@
+@import '../styles/responsive.scss';
+
+.table {
+    border-collapse: collapse;
+    thead {
+        // position: fixed;
+        // left:50%;
+        // transform: translate(-50%,0);
+
+
+        .tr {
+            // display: flex;
+            // justify-content: space-between;
+            text-align: center;
+            border-bottom: 1px solid #c2bfbf;
+
+            th {
+                font-weight: 700;
+                color: #999;
+
+                @include sm {
+                    font-size: 10px;
+                    font-weight: 300;
+                 }
+
+                 @include sm {
+                    font-size: 13px;
+                    font-weight: 400;
+                 }
+
+            }
+        }
+    }
+
+    tbody{
+        tr{
+            text-align: center;
+            border-bottom: 1px solid #c2bfbf;
+
+            @include sm {
+                font-size: 10px;
+                font-weight: 300;
+             }
+
+             @include sm {
+                font-size: 13px;
+                font-weight: 400;
+             }
+        }
+    }
+
+
+}
