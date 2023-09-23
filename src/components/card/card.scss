@@ -12,6 +12,16 @@ $text_color: #888;
   font-size: 13px;
   background-color: red;
   border-radius: 3px;
+}
+
+.warningCard {
+  margin-top: 20px;
+  padding: 10px 15px;
+  color: aliceblue;
+  font-size: 10px;
+  background-color: rgba(255, 0, 0, 0.753);
+  border-radius: 3px;
+  margin-left: 20px;
 
 }
 
@@ -49,7 +59,13 @@ $text_color: #888;
     .title {
       font-weight: bold;
       font-size: 14px;
-      color: #312c2c
+      color: #2b2a29cd;
+
+
+      @include sm{
+        font-size: 12px;
+        color: #2b2a29c2;
+      }
     }
 
     .counter {

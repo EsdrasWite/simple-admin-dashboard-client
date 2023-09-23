@@ -1,9 +1,7 @@
 import * as React from 'react';
 import '../components/styles/globalStyle.scss'
 import '../components/navbar/navbar.scss'
-// import NavBar from '../components/navbar/Navbar';
-import Card from '../components/card/Card';
-import { Box } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import ChartOne from '../components/chart/ChartOne.jsx';
 import ChartTwo from '../components/chart/ChartTwo.jsx';
 import ChartThree from '../components/chart/ChartThree.jsx';
@@ -15,25 +13,40 @@ import Historique from '../components/historique/Historique.jsx'
 import { useNavigate } from 'react-router-dom';
 
 import { StorageRounded, Logout } from '@mui/icons-material'
+import CardHum from '../components/card/CardHum';
+import CardFum from '../components/card/CardFum';
+import CardTemp from '../components/card/CardTemp';
+import CardPous from '../components/card/CardPous';
 
 
 function Home() {
 
     const [dataTable, setDataTable] = React.useState([
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 6, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 5, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
-        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0},
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 6, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 5, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
+        { id: 0, temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 },
     ])
+
+    //for card default value
+    const [lastValue, setLastValue] = React.useState({ temperatureamb: 0, humiditeeamb: 0, niveaufumee: 0, poussiere: 0 });
+    const { temperatureamb, humiditeeamb, niveaufumee, poussiere } = lastValue;
+
+    //handeling notification
+    const [errorN, setErrorN] = React.useState(false);
+    // const [msg1, setmsg1] = React.useState('')
+    // const [msg2, setmsg2] = React.useState('')
+    // const [msg3, setmsg3] = React.useState('')
+    // const [msg4, setmsg4] = React.useState('')
 
     const [status, setStatus] = React.useState('')
     const [temp, setTemp] = React.useState(null)
@@ -43,6 +56,7 @@ function Home() {
     const [power, setPower] = React.useState(0);
 
     const navigate = useNavigate()
+
     const handleClose = () => {
         localStorage.clear();
         navigate("/")
@@ -96,11 +110,35 @@ function Home() {
             })
     }
 
+    
+    // if (temperatureamb > 20) {
+    //     setErrorN(true)
+    // }
+    // else if (humiditeeamb > 20) {
+    //     setmsg2('bbbbbb')
+    //     setErrorN(true)
+    // }
+    // else if (niveaufumee > 0) {
+    //     setmsg3('cccccc')
+    //     setErrorN(true)
+    // }
+    // else if (poussiere > 5) {
+    //     setmsg4('dddddd')
+    //     setErrorN(true)
+    // }
+
+    console.log("Home page")
+
     React.useEffect(() => {
 
         setInterval(() => {
             Axios.get(`/server/getall`)
                 .then(response => {
+
+                    //for card default value
+                    if (response.data.data.length > 1) setLastValue(response.data.data[response.data.data.length - 1]);
+                    else setLastValue(current => ({ ...current }))
+                    //for graphic default value
                     if (response.data.data.length > 11) setDataTable(response.data.data.slice(-10));
                     else setDataTable(current => ([...current]));
                 })
@@ -111,6 +149,7 @@ function Home() {
     }, [])
 
 
+    console.log('Home')
     return (
         <React.Fragment>
 
@@ -133,7 +172,7 @@ function Home() {
                         </div>
                     </div>
                     <div className="powerBtn">
-                        <div className={status == 1 ? 'active' : 'left'} onClick={() => {
+                        <div className={status === 1 ? 'active' : 'left'} onClick={() => {
                             localStorage.setItem('power', 1);
                             setPower(1);
                             handleToggleUpdate()
@@ -141,7 +180,7 @@ function Home() {
                         }}>
                             <div>ON</div>
                         </div>
-                        <div className={status == 0 ? 'active' : 'right'} onClick={() => {
+                        <div className={status === 0 ? 'active' : 'right'} onClick={() => {
                             localStorage.setItem('power', 0);
                             setPower(0);
                             handleToggleUpdate()
@@ -157,19 +196,21 @@ function Home() {
 
             <Box className='cardContainer' >
                 <div className="box box1">
-                    <Card type="humiditeSol" />
+                    <CardHum humiditeeamb={humiditeeamb} />
+                    {/* <Card type="humiditeSol" /> */}
                 </div>
                 <div className="box box1">
-                    <Card type="humiditeAmbiante" />
+                    {/* <Card type="humiditeAmbiante" /> */}
+                    <CardFum niveaufumee={niveaufumee} />
+                </div>
+                <div className="box box1">
+                    {/* <Card type="temperatureAmbiante" /> */}
+                    <CardTemp temperatureamb={temperatureamb} />
 
                 </div>
                 <div className="box box1">
-                    <Card type="temperatureAmbiante" />
-
-                </div>
-                <div className="box box1">
-                    <Card type="niveauEau" />
-
+                    {/* <Card type="niveauEau" /> */}
+                    <CardPous poussiere={poussiere} />
                 </div>
 
             </Box>
@@ -211,7 +252,23 @@ function Home() {
 
             <Historique open={open} setOpen={setOpen} />
 
+            {errorN &&
+                <Dialog open >
+                    <DialogTitle>Notifications</DialogTitle>
+                    <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: '5px', width: '400px' }} >
+                        <span className="warning">Le niveau de fumée est supérieur au seuil</span>
+                        {/* <span className="warning">{msg2}</span>
+                        <span className="warning">{msg3}</span>
+                        <span className="warning">{msg4}</span> */}
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant='text' onClick={() => setErrorN(false)} color='warning'>Ok</Button>
+                    </DialogActions>
+                </Dialog>
+            }
             <Footer />
+
+
         </React.Fragment>
     );
 }
