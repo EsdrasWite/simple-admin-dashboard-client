@@ -48,18 +48,6 @@ const Card = ({ poussiere }) => {
 
       {poussiere > 0 && <span className="warningCard">Le taux de poussière est élévé</span>}
 
-      {poussiere > 0 &&
-        <Dialog open={error}>
-          <DialogTitle>Notifications</DialogTitle>
-          <DialogContent>
-            <span className="warning">Le taux de poussière est élévé</span>
-          </DialogContent>
-          <DialogActions>
-            <Button variant='text' onClick={() => setError(false)} color='warning'>Ok</Button>
-          </DialogActions>
-        </Dialog>
-      }
-
     </>
   );
 };
